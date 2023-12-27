@@ -1,18 +1,15 @@
 class Solution:
     def sortPeople(self, names: List[str], heights: List[int]) -> List[str]:
-        #using bubble sort algorithm
-        box=defaultdict(int)
-
+        #using selection sort algorithm
         for i in range(len(heights)):
-            box[heights[i]]=names[i]
+            index=i
+            for j in range(i+1,len(heights)):
+                if heights[j]>heights[index]:
+                    index=j
+            if index!=i:
+                heights[index],heights[i]=heights[i],heights[index]
+                names[index], names[i] = names[i], names[index]
 
-        for i in range(len(heights)-1,0,-1):
-            for j in range(0,i):
-                if heights[j+1]>heights[j]:
-                    heights[j+1],heights[j] = heights[j],heights[j+1]
+        return names
 
-        li=[]
-        for i in range(len(heights)):
-            li.append(box[heights[i]])
-            
-        return li
+        
