@@ -20,4 +20,5 @@ class Solution:
 
         d2.next=None
         d1.next=c2.next
-        return c1.next 
+        ans=c1.next
+        return ans 
