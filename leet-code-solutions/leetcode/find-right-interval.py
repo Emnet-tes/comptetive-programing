@@ -1,6 +1,6 @@
 class Solution:
     def findRightInterval(self, intervals: List[List[int]]) -> List[int]:
-
+        k = len(intervals)
         ans=[-1]*len(intervals)
         start_index={}
         for i,n in enumerate(intervals):
@@ -10,7 +10,7 @@ class Solution:
         for i,n in enumerate(intervals):
             postion=bisect_left(sorted_intervals,[n[1],-float('inf')])
 
-            if postion != len(intervals):
+            if postion != k:
                 ans[i]=start_index[sorted_intervals[postion][0]]
         return ans
         
