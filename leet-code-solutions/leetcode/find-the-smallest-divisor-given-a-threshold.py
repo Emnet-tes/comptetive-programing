@@ -8,20 +8,20 @@ class Solution:
                 res += math.ceil(x/n)
             
             return res
-        low = 1
-        high = max(nums)
+        left = 1
+        right = max(nums)
 
-        while low <= high:
+        while left <= right:
 
-            mid = (low+high)//2
+            mid = (left + right)//2
             k = helper(mid)
 
             if k <= threshold:
-                high = mid-1
+                right = mid-1
             else:
-                low = mid+1
+                left = mid+1
         
-        return low
+        return left
 
         
         
