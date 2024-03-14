@@ -1,38 +1,17 @@
-
 class Solution:
-    def longestNiceSubstring (self, s: str) -> str:
-
-        n = len(s)
-
-        mx = 0
-
-        
-        k = -1
-
-        for i in range(len(s)):
-
-            lower = 0
-
-            upper = 0
-
-            for j in range(i, n):
-
-                c = s[j]
-
-                if c.islower():
-
-                    lower |= 1 << (ord(c) -ord('a'))
-
-                else:
-
-                    upper |= 1 << (ord(c) - ord('A'))
-
-                if lower == upper and mx < j - i + 1:
-
-                    mx = j - i + 1
-
-                    k = i
-
-        return "" if k == -1 else s[k:k+mx]
-
-          
+    def longestNiceSubstring(self, s: str) -> str:
+        def dfs(substring):
+            box = set(substring)
+            if len(substring) < 2:
+                return ''
+            for i,n in enumerate(substring):
+                if not (n.lower() in box and n.upper() in box):
+                    left = dfs(substring[:i])
+                    right = dfs(substring[i+1:])
+                    
+                    if len(left) >= len(right):
+                        return left
+                    else:
+                        return right
+            return substring
+        return dfs(s)
