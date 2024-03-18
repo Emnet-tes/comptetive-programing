@@ -10,7 +10,7 @@ class NumMatrix:
                     self.grid[r][c] += self.grid[r - 1][c]
                 if c > 0:
                     self.grid[r][c] += self.grid[r][c - 1]
-                if r > 0 and c > 0:
+                if c > 0 and r > 0:
                     self.grid[r][c] -= self.grid[r - 1][c - 1]
 
     def sumRegion(self, row1: int, col1: int, row2: int, col2: int) -> int:
